@@ -8,7 +8,7 @@
 
 ## Development
 
-- To start the project run this command
+- To start the project run this command in the project directory
 
   `live-server`
 
