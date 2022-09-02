@@ -2,26 +2,19 @@
 
 ## Installation
 
-- First we have to install dependencies
+- First we have to install live server to locally serve the site
 
-  `npm install`
+  `npm i -g live-server`
 
 ## Development
 
 - To start the project run this command
 
-  `npm start`
+  `live-server`
 
-- To bundle the definition to the dist folder
-
-  `npm run build`
-
-- To validate the definition
-
-  `npm test`
-
-- Specification is written in the `openapi/openapi.yaml` file, there you can change it.
+- Specification is written in the `openapi.yaml` file, there you can change it.
 
 ## Documentation
 
-- [Redoc CLI]('https://redocly.com/docs/cli/')
+- [Redoc CLI]("https://redocly.com/docs/cli/")
+- [Live Server]("https://www.npmjs.com/package/live-server")
