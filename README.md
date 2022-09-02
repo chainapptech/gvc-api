@@ -8,16 +8,20 @@
 
 ## Development
 
-- Then we should install live server
-
-  `npm install -g live-server`
-
 - To start the project run this command
 
   `npm start`
 
-- Specification is written in the `gvc-api.yaml` file, there you can change it.
+- To bundle the definition to the dist folder
 
-## Docuemntation
+  `npm run build`
+
+- To validate the definition
+
+  `npm test`
+
+- Specification is written in the `openapi/openapi.yaml` file, there you can change it.
+
+## Documentation
 
 - [Redoc](https://redocly.com/docs/redoc/quickstart/')
