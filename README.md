@@ -16,5 +16,5 @@
 
 ## Documentation
 
-- [Redoc CLI]("https://redocly.com/docs/cli/")
-- [Live Server]("https://www.npmjs.com/package/live-server")
+- [Redoc CLI]('https://redocly.com/docs/cli/')
+- [Live Server]('https://www.npmjs.com/package/live-server')
