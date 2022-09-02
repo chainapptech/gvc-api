@@ -24,4 +24,4 @@
 
 ## Documentation
 
-- [Redoc](https://redocly.com/docs/redoc/quickstart/')
+- [Redoc CLI]('https://redocly.com/docs/cli/')
