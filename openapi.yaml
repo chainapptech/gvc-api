@@ -2,7 +2,16 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: GVC API Documentation
-  description: ""
+  description: |
+    # Introduction
+    This specification describes how to use the GVC API.
+    The GVC API is organized around REST and can be used to retrieve, analyze and insert new data.
+    The GVC API has predictable resource-oriented URLs, returns JSON responses, and uses standard HTTP response codes and authentication.
+    When you make a request to the API, you will specify an HTTP method and a path. Additionally, you might also specify request headers and path, query, or body parameters. 
+    The API will return the response status code, response headers, and potentially a response body.
+    # Authentication
+    GVC API offers JWT form of authentication. To test the authentication, you will need to register with a username and password. 
+    With those credentials you will have the JWT that is needed for authentication.
 tags:
   - name: Voter
     description: All information and actions related to voters.
@@ -18,6 +27,16 @@ tags:
     description: All information and actions related to privacy policy.
   - name: Terms and conditions
     description: All information and actions related to terms and conditions.
+x-tagGroups:
+  - name: General
+    tags:
+      - Voter
+      - Delegation
+      - Drep
+      - Social
+      - Tag
+      - Privacy policy
+      - Terms and conditions
 servers:
   - url: http://localhost:1337/api
     description: Development server
