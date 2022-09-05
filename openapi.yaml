@@ -84,27 +84,33 @@ components:
                 - type: integer
                 - type: string
               example: "1"
+              description: "Id from required voter."
             drep_id:
               oneOf:
                 - type: integer
                 - type: string
               example: "1"
+              description: "Id from required drep."
             weight_percent:
               type: integer
               example: 32
               maximum: 100
               minimum: 1
+              description: "Weight of this delegation."
             submitted_at:
               type: string
               format: date-time
+              description: "The date when the delegation is submitted."
             finalized_at:
               type: string
               format: date-time
+              description: "The date when the delegation is finalized."
             transaction_metadata: {}
             transaction_id:
               type: integer
               example: 223
               minimum: 1
+              description: "Transaction Id."
     DelegationListResponseDataItem:
       type: object
       properties:
@@ -1399,46 +1405,57 @@ components:
               example: "xpub1lx45vasdq23cu8476ulp60px6aggunztdf123fasdvdn2c4asdjyh34jz9k9xjsff923lvs0lhmwg82l7ewhwyutheek6j2asd2f3xepsd141231r"
               maximum: 255
               minimum: 66
+              description: "Drep's public voting key."
             name:
               type: string
               example: "Test name"
               maximum: 50
               minimum: 2
+              description: "Drep's name."
             username:
               type: string
               example: "Test username"
               maximum: 50
               minimum: 6
+              description: "Drep's username."
             headline:
               type: string
               example: "Test headline text"
               maximum: 255
               minimum: 10
+              description: "Headline text."
             profile_bio:
               type: string
-              example: "This is a placeholder for drep profile bio"
+              example: "This is a placeholder for drep's profile bio"
               maximum: 255
               minimum: 10
+              description: "Drep's profile bio."
             contribution:
               type: string
               example: "This is a placeholder for drep contribution"
               maximum: 255
               minimum: 10
+              description: "Drep's contribution."
             avatar:
               type: string
               example: "Binary avatar code or link to picture"
               minimum: 10
+              description: "Drep's binary avatar."
             email:
               type: string
               example: "testuser1@gmail.com"
               maximum: 320
               minimum: 12
+              description: "Drep's email."
             hide_email:
               type: boolean
+              description: "Is the email hidden?"
             is_approved:
               type: boolean
+              description: "Is drep approved?"
             is_public_drep:
               type: boolean
+              description: "Is drep public?"
             drep_disqualification_histories:
               type: array
               items:
@@ -1446,6 +1463,7 @@ components:
                   - type: integer
                   - type: string
                 example: "1"
+                description: "Drep's disqualification histories."
             drep_tags:
               type: array
               items:
@@ -1453,6 +1471,7 @@ components:
                   - type: integer
                   - type: string
                 example: "1"
+                description: "Drep's tags."
             drep_socials:
               type: array
               items:
@@ -1460,6 +1479,7 @@ components:
                   - type: integer
                   - type: string
                 example: "1"
+                description: "Drep's socials."
             drep_metrics:
               type: array
               items:
@@ -1467,6 +1487,7 @@ components:
                   - type: integer
                   - type: string
                 example: "1"
+                description: "Drep's metrics."
     DrepListResponseDataItem:
       type: object
       properties:
@@ -9809,6 +9830,7 @@ components:
               type: string
               example: "Private policy"
               minimum: 10
+              description: "Content of the privacy pollicy."
     PrivacyPolicyListResponseDataItem:
       type: object
       properties:
@@ -9931,6 +9953,7 @@ components:
               example: "Social name"
               maximum: 255
               minimum: 3
+              description: "Social's name."
     SocialListResponseDataItem:
       type: object
       properties:
@@ -10053,6 +10076,7 @@ components:
               example: "Tag name"
               maximum: 255
               minimum: 2
+              description: "Tag's name."
     TagListResponseDataItem:
       type: object
       properties:
@@ -10174,6 +10198,7 @@ components:
               type: string
               example: "Terms and condition"
               minimum: 10
+              description: "Content of the terms and condition."
     TermsAndConditionListResponseDataItem:
       type: object
       properties:
@@ -10298,12 +10323,15 @@ components:
               example: "addr1q9acdrqqr7js3dtapzyf2eaygjfph8sk83gj267te5hjrmmxeuutat5qmejlngrycfsn"
               maximum: 255
               minimum: 1
+              description: "Voter's wallet address."
             is_passive:
               type: boolean
               example: false
+              description: "Is the voter passive?"
             is_disconnected:
               type: boolean
               example: false
+              description: "Is the voter disconnected?"
     VoterListResponseDataItem:
       type: object
       properties:
