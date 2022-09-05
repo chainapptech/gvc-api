@@ -10552,7 +10552,7 @@ paths:
           examples:
             "Return only one field": 
               value: "wallet_address"
-      operationId: get/voters
+      operationId: Find all voters
     post:
       responses:
         "200":
@@ -10645,7 +10645,7 @@ paths:
       tags:
         - Voter
       parameters: []
-      operationId: post/voters
+      operationId: Add a new voter
       requestBody:
         required: true
         content:
@@ -10727,7 +10727,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/voters/{id}
+      operationId: Find voter by ID
     put:
       responses:
         "200":
@@ -10827,7 +10827,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/voters/{id}
+      operationId: Update an existing voter
       requestBody:
         required: true
         content:
@@ -10908,7 +10908,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/voters/{id}
+      operationId: Delete voter
   /delegations:
     get:
       responses:
@@ -11067,7 +11067,7 @@ paths:
               value: "*"
             "Populate one relations":
               value: "drep_id"
-      operationId: get/delegations
+      operationId: Find all delegations
     post:
       responses:
         "200":
@@ -11160,7 +11160,7 @@ paths:
       tags:
         - Delegation
       parameters: []
-      operationId: post/delegations
+      operationId: Add a new delegation
       requestBody:
         required: true
         content:
@@ -11242,7 +11242,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/delegations/{id}
+      operationId: Find delegation by ID
     put:
       responses:
         "200":
@@ -11342,7 +11342,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/delegations/{id}
+      operationId: Update an existing delegation
       requestBody:
         required: true
         content:
@@ -11423,7 +11423,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/delegations/{id}
+      operationId: Delete delegation
   /dreps:
     get:
       responses:
@@ -11592,7 +11592,7 @@ paths:
               value: "*"
             "Populate one relations":
               value: "drep_socials"
-      operationId: get/dreps
+      operationId: Find all dreps
     post:
       responses:
         "200":
@@ -11685,7 +11685,7 @@ paths:
       tags:
         - Drep
       parameters: []
-      operationId: post/dreps
+      operationId: Add a new drep
       requestBody:
         required: true
         content:
@@ -11767,7 +11767,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/dreps/{id}
+      operationId: Find drep by ID
     put:
       responses:
         "200":
@@ -11867,7 +11867,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/dreps/{id}
+      operationId: Update an existing drep
       requestBody:
         required: true
         content:
@@ -11948,7 +11948,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/dreps/{id}
+      operationId: Delete drep
   /socials:
     get:
       responses:
@@ -12105,7 +12105,7 @@ paths:
           examples:
             "Return only one field": 
               value: "name"
-      operationId: get/socials
+      operationId: Find all socials
     post:
       responses:
         "200":
@@ -12198,7 +12198,7 @@ paths:
       tags:
         - Social
       parameters: []
-      operationId: post/socials
+      operationId: Add a new social
       requestBody:
         required: true
         content:
@@ -12280,7 +12280,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/socials/{id}
+      operationId: Find social by ID
     put:
       responses:
         "200":
@@ -12380,7 +12380,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/socials/{id}
+      operationId: Update an existing social
       requestBody:
         required: true
         content:
@@ -12461,7 +12461,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/socials/{id}
+      operationId: Delete social
   /tags:
     get:
       responses:
@@ -12618,7 +12618,7 @@ paths:
           examples:
             "Return only one field": 
               value: "name"
-      operationId: get/tags
+      operationId: Find all tags
     post:
       responses:
         "200":
@@ -12711,7 +12711,7 @@ paths:
       tags:
         - Tag
       parameters: []
-      operationId: post/tags
+      operationId: Add a new tag
       requestBody:
         required: true
         content:
@@ -12793,7 +12793,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/tags/{id}
+      operationId: Find tag by ID
     put:
       responses:
         "200":
@@ -12893,7 +12893,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/tags/{id}
+      operationId: Update an existing tag
       requestBody:
         required: true
         content:
@@ -12974,7 +12974,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/tags/{id}
+      operationId: Delete tag
   /privacy-policies:
     get:
       responses:
@@ -13131,7 +13131,7 @@ paths:
           examples:
             "Return only one field": 
               value: "name"
-      operationId: get/privacy-policies
+      operationId: Find all privacy policies
     post:
       responses:
         "200":
@@ -13224,7 +13224,7 @@ paths:
       tags:
         - Privacy policy
       parameters: []
-      operationId: post/privacy-policies
+      operationId: Add a new privacy policy
       requestBody:
         required: true
         content:
@@ -13306,7 +13306,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/privacy-policies/{id}
+      operationId: Find privacy policy by ID
     put:
       responses:
         "200":
@@ -13406,7 +13406,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/privacy-policies/{id}
+      operationId: Update an existing privacy policy
       requestBody:
         required: true
         content:
@@ -13487,7 +13487,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/privacy-policies/{id}
+      operationId: Delete privacy policy
   /terms-and-conditions:
     get:
       responses:
@@ -13644,7 +13644,7 @@ paths:
           examples:
             "Return only one field": 
               value: "name"
-      operationId: get/terms-and-conditions
+      operationId: Find all terms and conditions
     post:
       responses:
         "200":
@@ -13737,7 +13737,7 @@ paths:
       tags:
         - Terms and conditions
       parameters: []
-      operationId: post/terms-and-conditions
+      operationId: Add a new terms and conditions
       requestBody:
         required: true
         content:
@@ -13819,7 +13819,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: get/terms-and-conditions/{id}
+      operationId: Find terms and conditions by ID
     put:
       responses:
         "200":
@@ -13919,7 +13919,7 @@ paths:
           required: true
           schema:
             type: string
-      operationId: put/terms-and-conditions/{id}
+      operationId: Update an existing terms and conditions
       requestBody:
         required: true
         content:
@@ -14000,4 +14000,4 @@ paths:
           required: true
           schema:
             type: string
-      operationId: delete/terms-and-conditions/{id}
+      operationId: Delete terms and conditions
