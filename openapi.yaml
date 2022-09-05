@@ -3,6 +3,13 @@ info:
   version: 1.0.0
   title: GVC API Documentation
   description: ""
+tags:
+  - name: Voter
+    description: All information and actions related to voters.
+  - name: Delegation
+    description: All information and actions related to delegations.
+  - name: Drep
+    description: All information and actions related to dreps.
 servers:
   - url: http://localhost:1337/api
     description: Development server
@@ -10463,6 +10470,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Voter
+      description: "Get the list of all voters with their informations and metadata."
       parameters:
         - name: sort
           in: query
@@ -10644,6 +10652,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Voter
+      description: "Create a new voter with his required data."
       parameters: []
       operationId: Add a new voter
       requestBody:
@@ -10719,6 +10728,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Voter
+      description: "Return a single voter based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -10819,6 +10829,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Voter
+      description: "Update the data on the voter that already exists, based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -10900,6 +10911,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Voter
+      description: "Delete voter based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -10976,6 +10988,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Delegation
+      description: "Get the list of all delegation with their informations and metadata."
       parameters:
         - name: sort
           in: query
@@ -11159,6 +11172,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Delegation
+      description: "Create a new delegation with required data."
       parameters: []
       operationId: Add a new delegation
       requestBody:
@@ -11234,6 +11248,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Delegation
+      description: "Return a single delegation based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -11334,6 +11349,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Delegation
+      description: "Update the data of the delegation that already exists, based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -11415,6 +11431,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Delegation
+      description: "Delete delegation based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -11491,6 +11508,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Drep
+      description: "Get the list of all dreps with their informations and metadata."
       parameters:
         - name: sort
           in: query
@@ -11684,6 +11702,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Drep
+      description: "Create a new drep with his required data."
       parameters: []
       operationId: Add a new drep
       requestBody:
@@ -11759,6 +11778,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Drep
+      description: "Return a single drep based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -11859,6 +11879,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Drep
+      description: "Update the data on the drep that already exists, based on the passed ID."
       parameters:
         - name: id
           in: path
@@ -11940,6 +11961,7 @@ paths:
                   message: "An internal server error occurred"
       tags:
         - Drep
+      description: "Delete drep based on the passed ID."
       parameters:
         - name: id
           in: path
