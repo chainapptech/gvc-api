@@ -332,7 +332,7 @@ components:
                                                 properties:
                                                   name:
                                                     type: string
-                                                    example: "Social name"
+                                                    example: "Social's name"
                                                   createdAt:
                                                     type: string
                                                     format: date-time
@@ -891,7 +891,7 @@ components:
                                                 properties:
                                                   name:
                                                     type: string
-                                                    example: "Social name"
+                                                    example: "Social's name"
                                                   createdAt:
                                                     type: string
                                                     format: date-time
@@ -6709,10 +6709,10 @@ components:
       properties:
         data:
           required:
-            - name
+            - private_policy
           type: object
           properties:
-            name:
+            private_policy:
               type: string
               example: "Private policy"
               minimum: 10
@@ -6726,7 +6726,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            private_policy:
               type: string
               example: "Private policy"
             createdAt:
@@ -6746,7 +6746,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            private_policy:
               type: string
             createdAt:
               type: string
@@ -6787,7 +6787,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            private_policy:
               type: string
               example: "Private policy"
             createdAt:
@@ -6807,7 +6807,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            private_policy:
               type: string
             createdAt:
               type: string
@@ -6832,14 +6832,25 @@ components:
         data:
           required:
             - name
+            - url
+            - icon
           type: object
           properties:
             name:
               type: string
-              example: "Social name"
+              example: "Social's name"
               maximum: 255
               minimum: 3
               description: "Social's name."
+            url:
+              type: string
+              example: "Social's url"
+              description: "Social's url."
+            icon:
+              type: string
+              example: "Social's icon"
+              minimum: 10
+              description: "Social's icon."
     SocialListResponseDataItem:
       type: object
       properties:
@@ -6851,7 +6862,13 @@ components:
           properties:
             name:
               type: string
-              example: "Sociale name"
+              example: "Social's name"
+            url: 
+              type: string
+              example: "Social's url"
+            icon: 
+              type: string
+              example: "Social's icon"
             createdAt:
               type: string
               format: date-time
@@ -6870,6 +6887,10 @@ components:
           type: object
           properties:
             name:
+              type: string
+            url:
+              type: string
+            icon:
               type: string
             createdAt:
               type: string
@@ -6912,7 +6933,13 @@ components:
           properties:
             name:
               type: string
-              example: "Social name"
+              example: "Social's name"
+            url: 
+              type: string
+              example: "Social's url"
+            icon: 
+              type: string
+              example: "Social's icon"
             createdAt:
               type: string
               format: date-time
@@ -6931,6 +6958,10 @@ components:
           type: object
           properties:
             name:
+              type: string
+            url:
+              type: string
+            icon:
               type: string
             createdAt:
               type: string
@@ -7077,10 +7108,10 @@ components:
       properties:
         data:
           required:
-            - name
+            - terms_and_conditions
           type: object
           properties:
-            name:
+            terms_and_conditions:
               type: string
               example: "Terms and condition"
               minimum: 10
@@ -7094,7 +7125,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            terms_and_conditions:
               type: string
               example: "Terms and condition"
             createdAt:
@@ -7114,7 +7145,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            terms_and_conditions:
               type: string
             createdAt:
               type: string
@@ -7155,7 +7186,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            terms_and_conditions:
               type: string
               example: "Terms and condition"
             createdAt:
@@ -7175,7 +7206,7 @@ components:
         attributes:
           type: object
           properties:
-            name:
+            terms_and_conditions:
               type: string
             createdAt:
               type: string
