@@ -27,6 +27,34 @@ tags:
     description: All information and actions related to privacy policy.
   - name: Terms and conditions
     description: All information and actions related to terms and conditions.
+  - name: voter_model
+    x-displayName: Voter model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/VoterRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: delegation_model
+    x-displayName: Delegation model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/DelegationRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: drep_model
+    x-displayName: Drep model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/DrepRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: social_model
+    x-displayName: Social model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/SocialRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: tag_model
+    x-displayName: Tag model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/TagRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: privacy_policy_model
+    x-displayName: Privacy policy model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/PrivacyPolicyRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: terms_and_conditions_model
+    x-displayName: Terms and conditions model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/TermsAndConditionRequest" showReadOnly={true} showWriteOnly={true} />
 x-tagGroups:
   - name: General
     tags:
@@ -37,6 +65,15 @@ x-tagGroups:
       - Tag
       - Privacy policy
       - Terms and conditions
+  - name: Models
+    tags:
+      - voter_model
+      - delegation_model
+      - drep_model
+      - social_model
+      - tag_model
+      - privacy_policy_model
+      - terms_and_conditions_model
 servers:
   - url: http://localhost:1337/api
     description: Development server
