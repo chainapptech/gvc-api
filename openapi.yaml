@@ -6709,12 +6709,12 @@ components:
       properties:
         data:
           required:
-            - private_policy
+            - privacy_policy
           type: object
           properties:
-            private_policy:
+            privacy_policy:
               type: string
-              example: "Private policy"
+              example: "Privacy policy"
               minimum: 10
               description: "Content of the privacy pollicy."
     PrivacyPolicyListResponseDataItem:
@@ -6726,9 +6726,9 @@ components:
         attributes:
           type: object
           properties:
-            private_policy:
+            privacy_policy:
               type: string
-              example: "Private policy"
+              example: "Privacy policy"
             createdAt:
               type: string
               format: date-time
@@ -6746,7 +6746,7 @@ components:
         attributes:
           type: object
           properties:
-            private_policy:
+            privacy_policy:
               type: string
             createdAt:
               type: string
@@ -6787,9 +6787,9 @@ components:
         attributes:
           type: object
           properties:
-            private_policy:
+            privacy_policy:
               type: string
-              example: "Private policy"
+              example: "Privacy policy"
             createdAt:
               type: string
               format: date-time
@@ -6807,7 +6807,7 @@ components:
         attributes:
           type: object
           properties:
-            private_policy:
+            privacy_policy:
               type: string
             createdAt:
               type: string
