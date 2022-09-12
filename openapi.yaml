@@ -13,19 +13,19 @@ info:
     GVC API offers JWT form of authentication. To test the authentication, you will need to register with a username and password. 
     With those credentials you will have the JWT that is needed for authentication.
 tags:
-  - name: Voter
+  - name: Voter (1.0.0)
     description: All information and actions related to voters.
-  - name: Delegation
+  - name: Delegation (1.0.0)
     description: All information and actions related to delegations.
-  - name: Drep
+  - name: Drep (1.0.0)
     description: All information and actions related to dreps.
-  - name: Social
+  - name: Social (1.0.0)
     description: All information and actions related to socials.
-  - name: Tag
+  - name: Tag (1.0.0)
     description: All information and actions related to tags.
-  - name: Privacy policy
+  - name: Privacy policy (1.0.0)
     description: All information and actions related to privacy policy.
-  - name: Terms and conditions
+  - name: Terms and conditions (1.0.0)
     description: All information and actions related to terms and conditions.
   - name: voter_model
     x-displayName: Voter model
@@ -58,13 +58,13 @@ tags:
 x-tagGroups:
   - name: General
     tags:
-      - Voter
-      - Delegation
-      - Drep
-      - Social
-      - Tag
-      - Privacy policy
-      - Terms and conditions
+      - Voter (1.0.0)
+      - Delegation (1.0.0)
+      - Drep (1.0.0)
+      - Social (1.0.0)
+      - Tag (1.0.0)
+      - Privacy policy (1.0.0)
+      - Terms and conditions (1.0.0)
   - name: Models
     tags:
       - voter_model
@@ -7441,7 +7441,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Voter
+        - Voter (1.0.0)
       description: "Get the list of all voters with their informations and metadata."
       parameters:
         - name: sort
@@ -7623,7 +7623,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Voter
+        - Voter (1.0.0)
       description: "Create a new voter with his required data."
       parameters: []
       operationId: Add a new voter
@@ -7699,7 +7699,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Voter
+        - Voter (1.0.0)
       description: "Return a single voter based on the passed ID."
       parameters:
         - name: id
@@ -7800,7 +7800,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Voter
+        - Voter (1.0.0)
       description: "Update the data on the voter that already exists, based on the passed ID."
       parameters:
         - name: id
@@ -7882,7 +7882,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Voter
+        - Voter (1.0.0)
       description: "Delete voter based on the passed ID."
       parameters:
         - name: id
@@ -7959,7 +7959,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Delegation
+        - Delegation (1.0.0)
       description: "Get the list of all delegation with their informations and metadata."
       parameters:
         - name: sort
@@ -8143,7 +8143,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Delegation
+        - Delegation (1.0.0)
       description: "Create a new delegation with required data."
       parameters: []
       operationId: Add a new delegation
@@ -8219,7 +8219,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Delegation
+        - Delegation (1.0.0)
       description: "Return a single delegation based on the passed ID."
       parameters:
         - name: id
@@ -8320,7 +8320,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Delegation
+        - Delegation (1.0.0)
       description: "Update the data of the delegation that already exists, based on the passed ID."
       parameters:
         - name: id
@@ -8402,7 +8402,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Delegation
+        - Delegation (1.0.0)
       description: "Delete delegation based on the passed ID."
       parameters:
         - name: id
@@ -8479,7 +8479,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Drep
+        - Drep (1.0.0)
       description: "Get the list of all dreps with their informations and metadata."
       parameters:
         - name: sort
@@ -8673,7 +8673,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Drep
+        - Drep (1.0.0)
       description: "Create a new drep with his required data."
       parameters: []
       operationId: Add a new drep
@@ -8749,7 +8749,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Drep
+        - Drep (1.0.0)
       description: "Return a single drep based on the passed ID."
       parameters:
         - name: id
@@ -8850,7 +8850,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Drep
+        - Drep (1.0.0)
       description: "Update the data on the drep that already exists, based on the passed ID."
       parameters:
         - name: id
@@ -8932,7 +8932,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Drep
+        - Drep (1.0.0)
       description: "Delete drep based on the passed ID."
       parameters:
         - name: id
@@ -9010,7 +9010,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Social
+        - Social (1.0.0)
       parameters:
         - name: sort
           in: query
@@ -9192,7 +9192,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Social
+        - Social (1.0.0)
       parameters: []
       operationId: Add a new social
       requestBody:
@@ -9268,7 +9268,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Social
+        - Social (1.0.0)
       parameters:
         - name: id
           in: path
@@ -9369,7 +9369,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Social
+        - Social (1.0.0)
       parameters:
         - name: id
           in: path
@@ -9451,7 +9451,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Social
+        - Social (1.0.0)
       parameters:
         - name: id
           in: path
@@ -9528,7 +9528,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Tag
+        - Tag (1.0.0)
       parameters:
         - name: sort
           in: query
@@ -9710,7 +9710,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Tag
+        - Tag (1.0.0)
       parameters: []
       operationId: Add a new tag
       requestBody:
@@ -9786,7 +9786,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Tag
+        - Tag (1.0.0)
       parameters:
         - name: id
           in: path
@@ -9887,7 +9887,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Tag
+        - Tag (1.0.0)
       parameters:
         - name: id
           in: path
@@ -9969,7 +9969,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Tag
+        - Tag (1.0.0)
       parameters:
         - name: id
           in: path
@@ -10046,7 +10046,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Privacy policy
+        - Privacy policy (1.0.0)
       parameters:
         - name: sort
           in: query
@@ -10228,7 +10228,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Privacy policy
+        - Privacy policy (1.0.0)
       parameters: []
       operationId: Add a new privacy policy
       requestBody:
@@ -10304,7 +10304,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Privacy policy
+        - Privacy policy (1.0.0)
       parameters:
         - name: id
           in: path
@@ -10405,7 +10405,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Privacy policy
+        - Privacy policy (1.0.0)
       parameters:
         - name: id
           in: path
@@ -10487,7 +10487,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Privacy policy
+        - Privacy policy (1.0.0)
       parameters:
         - name: id
           in: path
@@ -10564,7 +10564,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Terms and conditions
+        - Terms and conditions (1.0.0)
       parameters:
         - name: sort
           in: query
@@ -10746,7 +10746,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Terms and conditions
+        - Terms and conditions (1.0.0)
       parameters: []
       operationId: Add a new terms and conditions
       requestBody:
@@ -10822,7 +10822,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Terms and conditions
+        - Terms and conditions (1.0.0)
       parameters:
         - name: id
           in: path
@@ -10923,7 +10923,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Terms and conditions
+        - Terms and conditions (1.0.0)
       parameters:
         - name: id
           in: path
@@ -11005,7 +11005,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Terms and conditions
+        - Terms and conditions (1.0.0)
       parameters:
         - name: id
           in: path
