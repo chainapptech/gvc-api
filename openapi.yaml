@@ -7231,6 +7231,7 @@ components:
         data:
           required:
             - wallet_address
+            - public_voting_key
             - is_passive
             - is_disconnected
           type: object
@@ -7241,6 +7242,12 @@ components:
               maximum: 255
               minimum: 1
               description: "Voter's wallet address."
+            public_voting_key:
+              type: string
+              example: "xpub1lx45vasdq23cu8476ulp60px6aggunztdf123fasdvdn2c4asdjyh34jz9k9xjsff923lvs0lhmwg82l7ewhwyutheek6j2asd2f3xepsd141231r"
+              maximum: 255
+              minimum: 66
+              description: "Voter's public voting key."
             is_passive:
               type: boolean
               example: false
@@ -7261,6 +7268,9 @@ components:
             wallet_address:
               type: string
               example: "addr1q9acdrqqr7js3dtapzyf2eaygjfph8sk83gj267te5hjrmmxeuutat5qmejlngrycfsn"
+            public_voting_key:
+              type: string
+              example: "xpub1lx45vasdq23cu8476ulp60px6aggunztdf123fasdvdn2c4asdjyh34jz9k9xjsff923lvs0lhmwg82l7ewhwyutheek6j2asd2f3xepsd141231r"
             is_passive:
               type: boolean
             is_disconnected:
@@ -7331,6 +7341,9 @@ components:
             wallet_address:
               type: string
               example: "addr1q9acdrqqr7js3dtapzyf2eaygjfph8sk83gj267te5hjrmmxeuutat5qmejlngrycfsn"
+            public_voting_key:
+              type: string
+              example: "xpub1lx45vasdq23cu8476ulp60px6aggunztdf123fasdvdn2c4asdjyh34jz9k9xjsff923lvs0lhmwg82l7ewhwyutheek6j2asd2f3xepsd141231r"
             is_passive:
               type: boolean
             is_disconnected:
