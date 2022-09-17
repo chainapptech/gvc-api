@@ -27,6 +27,8 @@ tags:
     description: All information and actions related to privacy policy.
   - name: Terms and conditions (1.0.0)
     description: All information and actions related to terms and conditions.
+  - name: Transactions (1.0.0)
+    description: All information and actions related to transactions.
   - name: voter_model
     x-displayName: Voter model
     description: |
@@ -55,6 +57,10 @@ tags:
     x-displayName: Terms and conditions model
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/TermsAndConditionRequest" showReadOnly={true} showWriteOnly={true} />
+  - name: transactions_model
+    x-displayName: Transactions model
+    description: |
+      <SchemaDefinition schemaRef="#/components/schemas/TransactionsRequest" showReadOnly={true} showWriteOnly={true} />
 x-tagGroups:
   - name: General
     tags:
@@ -65,6 +71,7 @@ x-tagGroups:
       - Tag (1.0.0)
       - Privacy policy (1.0.0)
       - Terms and conditions (1.0.0)
+      - Transactions (1.0.0)
   - name: Models
     tags:
       - voter_model
@@ -74,6 +81,7 @@ x-tagGroups:
       - tag_model
       - privacy_policy_model
       - terms_and_conditions_model
+      - transactions_model
 servers:
   - url: http://localhost:1337/api
     description: Development server
@@ -134,20 +142,6 @@ components:
               maximum: 100
               minimum: 1
               description: "Weight of this delegation."
-            submitted_at:
-              type: string
-              format: date-time
-              description: "The date when the delegation is submitted."
-            finalized_at:
-              type: string
-              format: date-time
-              description: "The date when the delegation is finalized."
-            transaction_metadata: {}
-            transaction_id:
-              type: integer
-              example: 223
-              minimum: 1
-              description: "Transaction Id."
     DelegationListResponseDataItem:
       type: object
       properties:
@@ -351,84 +345,12 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    example: "1"
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "34"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "23"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "3"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                        example: "5.6"
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                                example: "1"
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             weight_percent:
-              type: integer
-            submitted_at:
-              type: string
-              format: date-time
-            finalized_at:
-              type: string
-              format: date-time
-            transaction_metadata: {}
-            transaction_id:
               type: integer
             createdAt:
               type: string
               format: date-time
             updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
               type: string
               format: date-time
     DelegationListResponseDataItemLocalized:
@@ -460,9 +382,6 @@ components:
                           type: string
                           format: date-time
                         updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
                           type: string
                           format: date-time
             drep_id:
@@ -610,81 +529,12 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             weight_percent:
-              type: integer
-            submitted_at:
-              type: string
-              format: date-time
-            finalized_at:
-              type: string
-              format: date-time
-            transaction_metadata: {}
-            transaction_id:
               type: integer
             createdAt:
               type: string
               format: date-time
             updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
               type: string
               format: date-time
     DelegationListResponse:
@@ -910,84 +760,12 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    example: "1"
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "34"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "23"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "3"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                        example: 5.6
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                                example: "1"
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             weight_percent:
-              type: integer
-            submitted_at:
-              type: string
-              format: date-time
-            finalized_at:
-              type: string
-              format: date-time
-            transaction_metadata: {}
-            transaction_id:
               type: integer
             createdAt:
               type: string
               format: date-time
             updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
               type: string
               format: date-time
     DelegationResponseDataObjectLocalized:
@@ -1169,63 +947,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             weight_percent:
               type: integer
             submitted_at:
@@ -1241,9 +962,6 @@ components:
               type: string
               format: date-time
             updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
               type: string
               format: date-time
     DelegationResponse:
@@ -1340,14 +1058,6 @@ components:
                   - type: string
                 example: "1"
                 description: "Drep's socials."
-            drep_metrics:
-              type: array
-              items:
-                oneOf:
-                  - type: integer
-                  - type: string
-                example: "1"
-                description: "Drep's metrics."
     DrepListResponseDataItem:
       type: object
       properties:
@@ -1415,20 +1125,6 @@ components:
                       attributes:
                         type: object
                         properties: {}
-            drep_metrics:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: "1"
-                      attributes:
-                        type: object
-                        properties: {}
             createdAt:
               type: string
               format: date-time
@@ -1482,19 +1178,6 @@ components:
                         type: object
                         properties: {}
             drep_socials:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      attributes:
-                        type: object
-                        properties: {}
-            drep_metrics:
               type: object
               properties:
                 data:
@@ -1604,20 +1287,6 @@ components:
                       attributes:
                         type: object
                         properties: {}
-            drep_metrics:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: "1"
-                      attributes:
-                        type: object
-                        properties: {}
             createdAt:
               type: string
               format: date-time
@@ -1683,19 +1352,6 @@ components:
                       attributes:
                         type: object
                         properties: {}
-            drep_metrics:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      attributes:
-                        type: object
-                        properties: {}
             createdAt:
               type: string
               format: date-time
@@ -1711,1025 +1367,6 @@ components:
           $ref: "#/components/schemas/DrepResponseDataObject"
         meta:
           type: object
-    DrepMetricRequest:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          required:
-            - voting_power
-            - delegated_voting_power
-            - delegator_count
-            - voting_power_saturation
-          type: object
-          properties:
-            voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegated_voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegator_count:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            voting_power_saturation:
-              type: number
-              format: float
-            drep_id:
-              oneOf:
-                - type: integer
-                - type: string
-              example: string or id
-    DrepMetricListResponseDataItem:
-      type: object
-      properties:
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegated_voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegator_count:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            voting_power_saturation:
-              type: number
-              format: float
-            drep_id:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    attributes:
-                      type: object
-                      properties:
-                        public_voting_key:
-                          type: string
-                        name:
-                          type: string
-                        username:
-                          type: string
-                        headline:
-                          type: string
-                        profile_bio:
-                          type: string
-                        contribution:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
-                        hide_email:
-                          type: boolean
-                        is_approved:
-                          type: boolean
-                        is_public_drep:
-                          type: boolean
-                        drep_tags:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      tag_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_socials:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      social_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
-              type: string
-              format: date-time
-    DrepMetricListResponseDataItemLocalized:
-      type: object
-      properties:
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegated_voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegator_count:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            voting_power_saturation:
-              type: number
-              format: float
-            drep_id:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    attributes:
-                      type: object
-                      properties:
-                        public_voting_key:
-                          type: string
-                        name:
-                          type: string
-                        username:
-                          type: string
-                        headline:
-                          type: string
-                        profile_bio:
-                          type: string
-                        contribution:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
-                        hide_email:
-                          type: boolean
-                        is_approved:
-                          type: boolean
-                        is_public_drep:
-                          type: boolean
-                        drep_tags:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      tag_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_socials:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      social_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
-              type: string
-              format: date-time
-    DrepMetricListResponse:
-      properties:
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/DrepMetricListResponseDataItem"
-        meta:
-          type: object
-          properties:
-            pagination:
-              properties:
-                page:
-                  type: integer
-                pageSize:
-                  type: integer
-                  minimum: 25
-                pageCount:
-                  type: integer
-                  maximum: 1
-                total:
-                  type: integer
-    DrepMetricResponseDataObject:
-      type: object
-      properties:
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegated_voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegator_count:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            voting_power_saturation:
-              type: number
-              format: float
-            drep_id:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    attributes:
-                      type: object
-                      properties:
-                        public_voting_key:
-                          type: string
-                        name:
-                          type: string
-                        username:
-                          type: string
-                        headline:
-                          type: string
-                        profile_bio:
-                          type: string
-                        contribution:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
-                        hide_email:
-                          type: boolean
-                        is_approved:
-                          type: boolean
-                        is_public_drep:
-                          type: boolean
-                        drep_tags:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      tag_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_socials:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      social_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
-              type: string
-              format: date-time
-    DrepMetricResponseDataObjectLocalized:
-      type: object
-      properties:
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegated_voting_power:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            delegator_count:
-              type: string
-              pattern: ^\d*$
-              example: "123456789"
-            voting_power_saturation:
-              type: number
-              format: float
-            drep_id:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    attributes:
-                      type: object
-                      properties:
-                        public_voting_key:
-                          type: string
-                        name:
-                          type: string
-                        username:
-                          type: string
-                        headline:
-                          type: string
-                        profile_bio:
-                          type: string
-                        contribution:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
-                        hide_email:
-                          type: boolean
-                        is_approved:
-                          type: boolean
-                        is_public_drep:
-                          type: boolean
-                        drep_tags:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      tag_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_socials:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      social_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties:
-                                                  name:
-                                                    type: string
-                                                  createdAt:
-                                                    type: string
-                                                    format: date-time
-                                                  updatedAt:
-                                                    type: string
-                                                    format: date-time
-                                                  publishedAt:
-                                                    type: string
-                                                    format: date-time
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
-            publishedAt:
-              type: string
-              format: date-time
-    DrepMetricResponse:
-      properties:
-        data:
-          $ref: "#/components/schemas/DrepMetricResponseDataObject"
-        meta:
-          type: object
-    DrepPrivacyPolicyRequest:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          required:
-            - accepted_at
-          type: object
-          properties:
-            drep_id:
-              oneOf:
-                - type: integer
-                - type: string
-              example: string or id
-            privacy_policy_id:
-              oneOf:
-                - type: integer
-                - type: string
-              example: string or id
-            accepted_at:
-              type: string
-              format: date-time
     DrepPrivacyPolicyListResponseDataItem:
       type: object
       properties:
@@ -2882,64 +1519,7 @@ components:
                                         format: date-time
                                       publishedAt:
                                         type: string
-                                        format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
+                                        format: date-time         
             privacy_policy_id:
               type: object
               properties:
@@ -3127,63 +1707,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             privacy_policy_id:
               type: object
               properties:
@@ -3392,63 +1915,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             privacy_policy_id:
               type: object
               properties:
@@ -3636,63 +2102,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             privacy_policy_id:
               type: object
               properties:
@@ -3910,63 +2319,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             social_id:
               type: object
               properties:
@@ -4142,63 +2494,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             social_id:
               type: object
               properties:
@@ -4395,63 +2690,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             social_id:
               type: object
               properties:
@@ -4627,63 +2865,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             social_id:
               type: object
               properties:
@@ -4882,63 +3063,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tag_id:
               type: object
               properties:
@@ -5112,63 +3236,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tag_id:
               type: object
               properties:
@@ -5363,63 +3430,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tag_id:
               type: object
               properties:
@@ -5593,63 +3603,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tag_id:
               type: object
               properties:
@@ -5852,63 +3805,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tos_id:
               type: object
               properties:
@@ -6096,63 +3992,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tos_id:
               type: object
               properties:
@@ -6361,63 +4200,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tos_id:
               type: object
               properties:
@@ -6605,63 +4387,6 @@ components:
                                       publishedAt:
                                         type: string
                                         format: date-time
-                        drep_metrics:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                  attributes:
-                                    type: object
-                                    properties:
-                                      voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegated_voting_power:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      delegator_count:
-                                        type: string
-                                        pattern: ^\d*$
-                                        example: "123456789"
-                                      voting_power_saturation:
-                                        type: number
-                                        format: float
-                                      drep_id:
-                                        type: object
-                                        properties:
-                                          data:
-                                            type: object
-                                            properties:
-                                              id:
-                                                type: string
-                                              attributes:
-                                                type: object
-                                                properties: {}
-                                      createdAt:
-                                        type: string
-                                        format: date-time
-                                      updatedAt:
-                                        type: string
-                                        format: date-time
-                                      publishedAt:
-                                        type: string
-                                        format: date-time
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        publishedAt:
-                          type: string
-                          format: date-time
             tos_id:
               type: object
               properties:
@@ -7385,6 +5110,121 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/VoterResponseDataObject"
+        meta:
+          type: object
+    TransactionsRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          required:
+            - transaction_hash
+            - transaction_metadata
+            - submitted_at
+          type: object
+          properties:
+            transaction_hash:
+              type: string
+              example: "24e4eea89e3999d153cc2e29263669ca205691aa32ec86fe36819364c48d3232"
+              maximum: 255
+              description: "Content of the transaction hash."
+            transaction_metadata:
+              type: object
+              example: 
+                - data:
+                  - null
+              description: "Content of the transaction metadata."
+            submitted_at:
+              type: string
+              example: "2022-09-14T12:44:32+00:00"
+              description: "Date and time when the transaction was submitted."
+            finalized_at:
+              type: string
+              example: "2022-09-14T12:44:32+00:00"
+              description: "Date and time when the transaction was finalized."
+    TransactionsListResponseDataItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        attributes:
+          type: object
+          properties:
+            transaction_hash:
+              type: string
+            transaction_metadata:
+              type: object
+            submitted_at:
+              type: string
+              format: date-time
+            finalized_at:
+              type: string
+              format: date-time
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            publishedAt:
+              type: string
+              format: date-time
+    TransactionsListResponse:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TransactionsListResponseDataItem"
+        meta:
+          type: object
+          properties:
+            pagination:
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                  minimum: 25
+                pageCount:
+                  type: integer
+                  maximum: 1
+                total:
+                  type: integer
+    TransactionsResponseDataObject:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        attributes:
+          type: object
+          properties:
+            transaction_hash:
+              type: string
+              example: "24e4eea89e3999d153cc2e29263669ca205691aa32ec86fe36819364c48d3232"
+            transaction_metadata:
+              type: object
+            submitted_at:
+              type: string
+              format: date-time
+            finalized_at:
+              type: string
+              format: date-time
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            publishedAt:
+              type: string
+              format: date-time
+    TransactionsResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/TransactionsResponseDataObject"
         meta:
           type: object
 paths:
@@ -11028,3 +8868,521 @@ paths:
           schema:
             type: string
       operationId: Delete terms and conditions
+  /transactions:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Invalid Token:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Token"
+                Invalid Password:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Password"
+              
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Transactions (1.0.0)
+      description: "Get the list of all transactions with their informations and metadata."
+      parameters:
+        - name: sort
+          in: query
+          description: Sort by attributes ascending (asc) or descending (desc)
+          deprecated: false
+          required: false
+          schema:
+            type: string
+          examples:
+            asc:
+              value: "id:asc"
+            desc:
+              value: "id:desc" 
+        - name: pagination[withCount]
+          in: query
+          description: "Retun page/pageSize (default: true)"
+          deprecated: false
+          required: false
+          schema:
+            type: boolean
+          examples:
+            true: 
+              value: true
+            false:
+              value: false 
+        - name: pagination[page]
+          in: query
+          description: "Page number (default: 1)"
+          deprecated: false
+          required: false
+          schema:
+            type: integer
+          examples:
+            "1": 
+              value: "1"
+            "2":
+              value: "2" 
+        - name: pagination[pageSize]
+          in: query
+          description: "Page size (default: 25)"
+          deprecated: false
+          required: false
+          schema:
+            type: integer
+          examples:
+            "10": 
+              value: "10"
+            "25": 
+              value: "25"
+            "30":
+              value: "30" 
+        - name: pagination[start]
+          in: query
+          description: "Offset value (default: 0)"
+          deprecated: false
+          required: false
+          schema:
+            type: integer
+          examples:
+            "0": 
+              value: "0"
+            "25": 
+              value: "25"
+            "30":
+              value: "30" 
+        - name: pagination[limit]
+          in: query
+          description: "Number of entities to return (default: 25)"
+          deprecated: false
+          required: false
+          schema:
+            type: integer
+          examples:
+            "10": 
+              value: "10"
+            "25": 
+              value: "25"
+            "30":
+              value: "30"
+        - name: fields
+          in: query
+          description: "Fields to return (ex: transaction_hash, finalized_at)"
+          deprecated: false
+          required: false
+          schema:
+            type: string
+          examples:
+            "Return only one field": 
+              value: "wallet_address"
+      operationId: Find all transactions  
+    post:
+      description: "Create a new transaction with the required data."
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsRequest"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Validation Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: ValidationError
+                    message: "transaction_hash must be a 'string' type, but the final value was: n"
+                    details:
+                      errors:
+                        - paths:
+                            - 'transaction_metadata'
+                        - message: "transaction_metadata must be a 'object' type, but the final value was: n"
+                        - name: "ValidationError"
+                Syntax Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: SyntaxError
+                    message: "Unexpected token , in JSON at position n"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Invalid Token:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Token"
+                Invalid Password:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Password"
+              
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Transactions (1.0.0)
+      parameters: []
+      operationId: Add a new transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionsRequest"
+  /transactions/{id}:
+    get:
+      description: "Return a single transaction based on the passed ID."
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Invalid Token:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Token"
+                Invalid Password:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Password"
+              
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Transactions (1.0.0)
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          deprecated: false
+          required: true
+          schema:
+            type: string
+      operationId: Find transaction by ID
+    put:
+      description: "Update the data on the transaction that already exists, based on the passed ID."
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Validation Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: ValidationError
+                    message: "transaction_hash must be a 'string' type, but the final value was: n"
+                    details:
+                      errors:
+                        - paths:
+                            - 'transaction_metadata'
+                        - message: "transaction_metadata must be a 'object' type, but the final value was: n"
+                        - name: "ValidationError"
+                Syntax Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: SyntaxError
+                    message: "Unexpected token , in JSON at position n"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Invalid Token:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Token"
+                Invalid Password:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Password"
+              
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Transactions (1.0.0)
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          deprecated: false
+          required: true
+          schema:
+            type: string
+      operationId: Update an existing transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionsRequest"
+    delete:
+      description: "Delete a transaction based on the passed ID."
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsRequest"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Invalid Token:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Token"
+                Invalid Password:
+                  data: null
+                  error: 
+                    status: 401
+                    name: "Unauthorized"
+                    message: "Invalid Password"
+              
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Transactions (1.0.0)
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          deprecated: false
+          required: true
+          schema:
+            type: string
+      operationId: Delete a transaction
