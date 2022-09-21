@@ -9,9 +9,6 @@ info:
     The GVC API has predictable resource-oriented URLs, returns JSON responses, and uses standard HTTP response codes and authentication.
     When you make a request to the API, you will specify an HTTP method and a path. Additionally, you might also specify request headers and path, query, or body parameters. 
     The API will return the response status code, response headers, and potentially a response body.
-    # Authentication
-    GVC API offers JWT form of authentication. To test the authentication, you will need to register with a username and password. 
-    With those credentials you will have the JWT that is needed for authentication.
 tags:
   - name: Voter (1.0.0)
     description: All information and actions related to voters.
@@ -29,8 +26,8 @@ tags:
     description: All information and actions related to terms and conditions.
   - name: Transactions (1.0.0)
     description: All information and actions related to transactions.
-  - name: Login
-    description: This is the endpoint that we use to log in.
+  - name: Authentication
+    description: GVC API offers JWT form of authentication. To test the authentication, you will need to register with a username and password. With those credentials you will have the JWT that is needed for authentication.
   - name: Register
     description: This is the endpoint that we use to register the user.
   - name: voter_model
@@ -66,9 +63,13 @@ tags:
     description: |
       <SchemaDefinition schemaRef="#/components/schemas/TransactionsRequest" showReadOnly={true} showWriteOnly={true} />
 x-tagGroups:
+  - name: Public
+    tags:   
+      - Authentication    
+      - Drep (1.0.0)
   - name: Internal
     tags:
-      - Login    
+      - Register 
       - Voter (1.0.0)
       - Delegation (1.0.0)
       - Social (1.0.0)
@@ -76,10 +77,6 @@ x-tagGroups:
       - Privacy policy (1.0.0)
       - Terms and conditions (1.0.0)
       - Transactions (1.0.0)
-  - name: Public
-    tags:
-      - Register    
-      - Drep (1.0.0)
   - name: Models
     tags:
       - voter_model
@@ -5442,7 +5439,7 @@ paths:
                   name: "Internal Server Error"
                   message: "An internal server error occurred"
       tags:
-        - Login
+        - Authentication
       description: "Login using your username and password"
       operationId: Get the JWT
       requestBody:
