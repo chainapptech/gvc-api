@@ -29,6 +29,10 @@ tags:
     description: All information and actions related to terms and conditions.
   - name: Transactions (1.0.0)
     description: All information and actions related to transactions.
+  - name: Login
+    description: This is the endpoint that we use to log in.
+  - name: Register
+    description: This is the endpoint that we use to register the user.
   - name: voter_model
     x-displayName: Voter model
     description: |
@@ -64,6 +68,7 @@ tags:
 x-tagGroups:
   - name: Internal
     tags:
+      - Login    
       - Voter (1.0.0)
       - Delegation (1.0.0)
       - Social (1.0.0)
@@ -73,6 +78,7 @@ x-tagGroups:
       - Transactions (1.0.0)
   - name: Public
     tags:
+      - Register    
       - Drep (1.0.0)
   - name: Models
     tags:
@@ -115,6 +121,111 @@ components:
               type: string
             details:
               type: object
+    RegisterResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjYzNzczODQ2LCJleHAiOjE2NjYzNjU4NDZ9.TzTKSi_xB_Tf1GLICnPuLQUWllJI2s37YdQOZ68gFog"
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "3"
+            username:
+              type: string
+              example: "johndoe"
+            email:
+              type: string
+              example: "johndoe@gmail.com"
+            provider:
+              type: string
+              example: "local"
+            confirmed:
+              type: boolean
+              example: true
+            blocked:
+              type: boolean
+              example: false
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+    RegisterRequest:
+      type: object
+      required:
+          - username
+          - email
+          - password
+      properties:
+        username:
+          type: string
+          example: "johndoe"
+          maximum: 55
+          minimum: 3
+          description: "The name of the user"
+        email:
+          type: string
+          example: "johndoe@gmail.com"
+          maximum: 255
+          minimum: 6
+          description: "The email of the user"
+        password:
+          type: string
+          example: 'Password@1234'
+          description: "The password of the user"
+    LoginResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjYzNzczODQ2LCJleHAiOjE2NjYzNjU4NDZ9.TzTKSi_xB_Tf1GLICnPuLQUWllJI2s37YdQOZ68gFog"
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "3"
+            username:
+              type: string
+              example: "johndoe"
+            email:
+              type: string
+              example: "johndoe@gmail.com"
+            provider:
+              type: string
+              example: "local"
+            confirmed:
+              type: boolean
+              example: true
+            blocked:
+              type: boolean
+              example: false
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+    LoginRequest:
+      type: object
+      required:
+          - identifier
+          - password
+      properties:
+        identifier:
+          type: string
+          example: "johndoe"
+          maximum: 55
+          minimum: 3
+          description: "The name of the user"
+        password:
+          type: string
+          example: 'Password@1234'
+          description: "The password of the user"
     DelegationRequest:
       type: object
       required:
@@ -5178,6 +5289,168 @@ components:
         meta:
           type: object
 paths:
+  /auth/local/register:
+    post:
+      security: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"              
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Validation Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: ValidationError
+                    message: "username must be a 'string' type, but the final value was: n"
+                    details:
+                      errors:
+                        - paths:
+                            - 'username'
+                        - message: "username must be a 'string' type, but the final value was: n"
+                        - name: "ValidationError"
+                Syntax Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: SyntaxError
+                    message: "Unexpected token , in JSON at position n"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Register
+      description: "Register using your username, password and email"
+      operationId: Register as a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+  /auth/local:
+    post:
+      security: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"              
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                Validation Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: ValidationError
+                    message: "username must be a 'string' type, but the final value was: n"
+                    details:
+                      errors:
+                        - paths:
+                            - 'username'
+                        - message: "username must be a 'string' type, but the final value was: n"
+                        - name: "ValidationError"
+                Syntax Error:
+                  data: null
+                  error:
+                    status: 400
+                    name: SyntaxError
+                    message: "Unexpected token , in JSON at position n"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 403
+                  name: "ForbiddenError"
+                  message: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 404
+                  name: "NotFoundError"
+                  message: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                data: null
+                error: 
+                  status: 500
+                  name: "Internal Server Error"
+                  message: "An internal server error occurred"
+      tags:
+        - Login
+      description: "Login using your username and password"
+      operationId: Get the JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
   /voters:
     get:
       responses:
@@ -6218,6 +6491,7 @@ paths:
       operationId: Delete delegation
   /dreps:
     get:
+      security: []
       responses:
         "200":
           description: OK
@@ -6387,6 +6661,7 @@ paths:
               value: "drep_socials"
       operationId: Find all dreps
     post:
+      security: []
       responses:
         "200":
           description: OK
@@ -6488,6 +6763,7 @@ paths:
               $ref: "#/components/schemas/DrepRequest"
   /dreps/{id}:
     get:
+      security: []
       responses:
         "200":
           description: OK
@@ -6564,6 +6840,7 @@ paths:
             type: string
       operationId: Find drep by ID
     put:
+      security: []
       responses:
         "200":
           description: OK
@@ -6671,6 +6948,7 @@ paths:
             schema:
               $ref: "#/components/schemas/DrepRequest"
     delete:
+      security: []
       responses:
         "200":
           description: OK
